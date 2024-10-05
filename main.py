@@ -30,7 +30,7 @@ def main():
     Player.containers = (updatable, drawable)
     Asteroid.containers = (asteroids, updatable, drawable)
     AsteroidField.containers = (updatable)
-    Shot.containers = (updatable, drawable)
+    Shot.containers = (shots, updatable, drawable)
 
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
     asteroid_field = AsteroidField()
@@ -50,6 +50,12 @@ def main():
             if player.collides_with(a):
                 print("Game over!")
                 sys.exit()
+
+        for a in asteroids:
+            for s in shots:
+                if s.collides_with(a):
+                    a.kill()
+                    s.kill()
 
         screen.fill(color=(0, 0, 0))
         for d in drawable:
