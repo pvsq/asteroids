@@ -1,4 +1,5 @@
 import pygame
+import random
 import sys
 
 from player import Player
@@ -54,7 +55,7 @@ def main():
         for a in asteroids:
             for s in shots:
                 if s.collides_with(a):
-                    a.kill()
+                    a.split()
                     s.kill()
 
         screen.fill(color=(0, 0, 0))
